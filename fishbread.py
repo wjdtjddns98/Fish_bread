@@ -1,7 +1,7 @@
 stock = {
-    "팥붕어빵" : 0,
-    "슈크림붕어빵" : 0,
-    "초코붕어빵" : 0
+    "팥붕어빵" : 100,
+    "슈크림붕어빵" : 100,
+    "초코붕어빵" : 100
 }
 
 salse = {
@@ -48,6 +48,23 @@ def order_bread():
             print('                  ❌잘못 입력 하셨습니다❌')
             print("=" * 70)
 
+def calculate_sales():
+    total_sales = sum(salse[key] * price[key] for key in salse)
+    print("\n" + "=" * 70)
+    print("                        ★매출 현황★")
+    print("=" * 70)
+    print("상품명".ljust(20) + "판매수량".ljust(15) + "가격".ljust(15) + "총액")
+    print("-" * 70)
+    for item in salse:
+        item_total = salse[item] * price[item]
+        print(f"{item}".ljust(20) + f"{salse[item]}개".ljust(15) +
+              f"{price[item]}원".ljust(15) + f"{item_total}원")
+    print("-" * 70)
+    print(f"총 매출액: {total_sales}원")
+    print("=" * 70)
+
+
+
 # 붕어빵 admin 기능
 def admin_mode():
     PASSWORD = "1234"  # 관리자 비밀번호
@@ -70,6 +87,38 @@ def admin_mode():
     print("=" * 70)
     while True:
         print("\n" + "=" * 70)
+        print("                        관리자 메뉴")
+        print("              [ 재고추가, 매출현황, 재고현황, 뒤로가기 ]")
+        print("=" * 70)
+        menu = input('>')
+
+        if menu == "뒤로가기":
+            print("=" * 70)
+            print("                      메인으로 돌아갑니다")
+            print("=" * 70)
+            break
+        elif menu == "재고추가":
+            add_stock()
+        elif menu == "매출현황":
+            calculate_sales()
+        elif menu == "재고현황":
+            print("\n" + "=" * 70)
+            print("                        ★재고 현황★")
+            print("=" * 70)
+            print("상품명".ljust(20) + "현재 재고".ljust(15) + "가격")
+            print("-" * 70)
+            for item in stock:
+                print(f"{item}".ljust(20) + f"{stock[item]}개".ljust(15) + f"{price[item]}원")
+            print("=" * 70)
+        else:
+            print("=" * 70)
+            print("                    ❌잘못된 메뉴입니다❌")
+            print("=" * 70)
+
+
+def add_stock():
+    while True:
+        print("\n" + "=" * 70)
         print("                 추가할 붕어빵 맛을 입력해주세요")
         print("              [ 팥붕어빵, 슈크림붕어빵, 초코붕어빵 ]")
         print("           ❌뒤로 돌아가시려면 뒤로가기를 입력해주세요❌")
@@ -84,22 +133,22 @@ def admin_mode():
             print("=" * 70)
             print("                  추가할 수량을 입력 해주세요")
             print("=" * 70)
-            bread_count = int(input('>'))
-            print("=" * 70)
-            stock[bread_type] += bread_count
-            print(f"                    {bread_count}개가 추가 되었습니다")
-            print(f"                      현재 재고 : {stock[bread_type]}개")
-            print("=" * 70)
+            try:
+                bread_count = int(input('>'))
+                print("=" * 70)
+                stock[bread_type] += bread_count
+                print(f"                    {bread_count}개가 추가 되었습니다")
+                print(f"                      현재 재고 : {stock[bread_type]}개")
+                print("=" * 70)
+            except ValueError:
+                print("=" * 70)
+                print("                  ❌숫자만 입력해주세요❌")
+                print("=" * 70)
         else:
             print("=" * 70)
             print("                  ❌ 정확하게 입력 해주세요❌")
             print("               EX ) 초코붕어빵, 팥붕어빵, 슈크림붕어빵")
             print("=" * 70)
-
-def calculate_sales():
-    total_sales = sum(salse[key] * price[key] for key in salse)
-    return total_sales
-
 
 
 # 모드선택, 메인메뉴
