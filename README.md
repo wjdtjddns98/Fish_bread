@@ -19,7 +19,10 @@ Python의 기본 문법과 클래스 구조, 입출력 처리에 익숙해지기
 
 ## 🖼 실행 화면 예시
 
-![붕어빵 주문 시스템 실행 예시](/images/demo.png)
+![image](https://github.com/user-attachments/assets/5181ad0b-d839-4b95-bf99-dbf697dfa65c)
+![image](https://github.com/user-attachments/assets/b4b88be3-ab90-478a-b2f8-19c10a4c6d2a)
+
+
 
 ---
 
